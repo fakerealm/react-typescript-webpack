@@ -6,17 +6,25 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open --hot",
-    "build": "webpack --mode production --progress"
+    "build": "webpack --mode production --config webpack.config.js",
+    "dev": "webpack serve --open 'Brave'"
   },
-  "author": "Brad Traversy",
+  "author": "Kunal Saini",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "babel-loader": "^8.0.5",
+    "@babel/core": "^7.12.10",
     "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-loop-optimizer": "^1.4.1",
+    "css-loader": "^5.0.2",
+    "style-loader": "^2.0.0",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "chokidar": "^3.4.3"
   }
 }
