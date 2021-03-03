@@ -1,85 +1,9 @@
 const path = require('path')
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
-const config = {
-	entry: "./src/index.js",
-	output: {
-		path: path.resolve(__dirname, 'dist'),
-		filename: 'app.bundle.js'
-	},
-	resolve: {
-		extensions: [".ts", ".tsx", ".js"]
-	},
-	module: {
-		rules: [{
-				test: /\.m?js$/,
-				exclude: /(node_modules|bower_components)/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['@babel/preset-env'],
-					}
-				}
-			}, {
-				test: /\.tsx$/,
-				exclude: /(node_modules|bower_components)/,
-				use: "babel-loader"
-			},
-			{
-				test: /\.ts$/,
-				exclude: /(node_modules|bower_components)/,
-				use: "babel-loader"
-			},
-			{
-				test: /\.css$/,
-				exclude: /(node_modules|bower_components)/,
-				use: ["css-loader", "style-loader"]
-			}, {
-				test: /\.s[ac]ss$/i,
-				use: [
-					// Creates `style` nodes from JS strings
-					"style-loader",
-					// Translates CSS into CommonJS
-					"css-loader",
-					// Compiles Sass to CSS
-					"sass-loader",
-				],
-			},
-			{
-				test: /\.(png|jpg|gif)$/i,
-				use: [{
-					loader: 'url-loader',
-					options: {
-						limit: 8192,
-					}
-				}, ],
-				type: 'javascript/auto'
-			}
-		]
-	},
-	// plugins: [new HtmlWebpackPlugin({
-	// 	title: "Development Mode",
-	// 	filename: "public/index.html"
-	// })]
-}
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {HotModuleReplacementPlugin} = require("webpack");
 
-// module.exports = (env, argv) => {
-// 	let dev_config;
-// 	if(argv.mode === "development"){
-// 		config.watch = true;
-// 		const devServer = {
-// 			contentBase: path.join(__dirname, 'dist'),
-// 			compress: true,
-// 			port: 9000,
-// 		};
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-// 		dev_config = {
-// 			...config,
-// 			devServer
-// 		}
-// 	}
-
-// 	return dev_config;
-// }
 
 module.exports = {
 	entry: "./src/index.js",
@@ -87,6 +11,11 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'app.bundle.js'
 	},
+	devServer: {
+		contentBase: path.join(__dirname, "dist"),
+		compress: true,
+		hot: true
+	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js"]
 	},
@@ -100,13 +29,9 @@ module.exports = {
 						presets: ['@babel/preset-env'],
 					}
 				}
-			}, {
-				test: /\.tsx$/,
-				exclude: /(node_modules|bower_components)/,
-				use: "babel-loader"
 			},
 			{
-				test: /\.ts$/,
+				test: /\.(ts|tsx)$/,
 				exclude: /(node_modules|bower_components)/,
 				use: "babel-loader"
 			},
@@ -117,11 +42,8 @@ module.exports = {
 			}, {
 				test: /\.s[ac]ss$/i,
 				use: [
-					// Creates `style` nodes from JS strings
 					"style-loader",
-					// Translates CSS into CommonJS
 					"css-loader",
-					// Compiles Sass to CSS
 					"sass-loader",
 				],
 			},
@@ -137,15 +59,10 @@ module.exports = {
 			}
 		]
 	},
-	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
-		compress: true,
-		port: 9000,
-	}
-	
-	
-	// plugins: [new HtmlWebpackPlugin({
-	// 	title: "Development Mode",
-	// 	filename: "public/index.html"
-	// })]
+	plugins: [
+		new HtmlWebpackPlugin({template: "public/template.html"}),
+		new CleanWebpackPlugin(),
+		new HotModuleReplacementPlugin()
+	],
+
 }
