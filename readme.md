@@ -17,9 +17,6 @@
 
 
 
-> The overriding design goal for Markdown's
-
-
 
 ## NPM Commands
 _To run webpack in development mode_
