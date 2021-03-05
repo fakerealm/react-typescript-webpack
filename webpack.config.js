@@ -33,7 +33,7 @@ module.exports = {
 			{
 				test: /\.(ts|tsx)$/,
 				exclude: /(node_modules|bower_components)/,
-				use: "babel-loader"
+				use: [{loader: "babel-loader"}, {loader: "ts-loader"}]
 			},
 			{
 				test: /\.css$/,
