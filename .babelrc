@@ -8,7 +8,7 @@
 	},
 	"plugins": [
 		"babel-plugin-loop-optimizer",
-		"faster.js",
+		"module:faster.js",
 		"closure-elimination",
 		"babel-plugin-idx"
 	]
