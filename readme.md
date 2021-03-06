@@ -23,7 +23,7 @@ _To run webpack in development mode_
 ```npm run start```
 
 _To run webpack server with hot reloading_
-```npm run start:server```
+```npm run start:serve```
 
 _To create the production build of your program_
 ```npm run build```
