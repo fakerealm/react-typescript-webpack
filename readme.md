@@ -1,8 +1,6 @@
 # **React Typescript Webpack Template 🥳**
 ## _The best front-end template you can find ever,_
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
 **A simple to understand yet powerful template**
 
 - Typescript for decreasing debugging time
