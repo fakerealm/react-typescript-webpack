@@ -16,19 +16,34 @@
 - **ESLint using Google's Standard Style Guide.**
 
 
-
-
 ## NPM Commands
-_To run webpack in development mode_
-```npm run start```
+_To run webpack and watch files in development mode_
+```Bash
+npm run start
+```
 
-_To run webpack server with hot reloading_
-```npm run start:server```
+_To run webpack server with hot reloading in development mode_
+```Bash
+npm run start:server
+```
 
 _To create the production build of your program_
-```npm run build```
+```Bash
+npm run build
+```
 
+_To simply run the build process and watch files_
+```Bash
+npm run dev:build
+```
 
+---
+**NOTE**
+
+In development mode, Type errors are ignored but type warning and errors will still be 
+still visible.
+
+---
 
 ## Plugins
 

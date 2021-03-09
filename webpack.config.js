@@ -1,11 +1,36 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {HotModuleReplacementPlugin} = require("webpack");
-
+const { HotModuleReplacementPlugin } = require("webpack");
+const forkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+const typescriptBaseConfig = {
+	test: /\.(ts|tsx)$/,
+	exclude: /(node_modules|bower_components)/,
+};
 
-module.exports = {
+const typescriptProductionConfig = {
+	...typescriptBaseConfig,
+	use: [{
+		loader: "babel-loader"
+	}, {
+		loader: "ts-loader"
+	}]
+}
+
+const typescriptDevelopmentConfig = {
+	...typescriptBaseConfig,
+	use: {
+		loader: "babel-loader",
+		options: {
+			presets: ["@babel/preset-typescript"]
+		}
+	}
+
+};
+
+
+const config = {
 	entry: "./src/index.js",
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -29,11 +54,6 @@ module.exports = {
 						presets: ['@babel/preset-env'],
 					}
 				}
-			},
-			{
-				test: /\.(ts|tsx)$/,
-				exclude: /(node_modules|bower_components)/,
-				use: [{loader: "babel-loader"}, {loader: "ts-loader"}]
 			},
 			{
 				test: /\.css$/,
@@ -60,9 +80,23 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new HtmlWebpackPlugin({template: "public/template.html"}),
+		new HtmlWebpackPlugin({
+			template: "public/template.html"
+		}),
 		new CleanWebpackPlugin(),
 		new HotModuleReplacementPlugin()
 	],
 
+}
+
+
+module.exports = (env, argv) => {
+	if (argv.mode === "development") {
+		config.module.rules.push(typescriptDevelopmentConfig);
+		config.plugins.push(new forkTsCheckerWebpackPlugin);
+	}
+
+	if (argv.mode === "production") config.module.rules.push(typescriptProductionConfig);
+
+	return config;
 }
