@@ -37,6 +37,7 @@ const config = {
 		filename: 'app.bundle.js'
 	},
 	devServer: {
+		port: 8080,
 		contentBase: path.join(__dirname, "dist"),
 		compress: true,
 		hot: true

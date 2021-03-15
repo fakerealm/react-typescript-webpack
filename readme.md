@@ -1,8 +1,6 @@
 # **React Typescript Webpack Template 🥳**
 ## _The best front-end template you can find ever,_
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
 **A simple to understand yet powerful template**
 
 - Typescript for decreasing debugging time
@@ -22,10 +20,15 @@ _To run webpack and watch files in development mode_
 npm run start
 ```
 
+<<<<<<< HEAD
 _To run webpack server with hot reloading in development mode_
 ```Bash
 npm run start:server
 ```
+=======
+_To run webpack server with hot reloading_
+```npm run start:serve```
+>>>>>>> 55fe987fbcbb0f0c6211b00a8a92fe7ef1fef5a3
 
 _To create the production build of your program_
 ```Bash
@@ -40,8 +43,9 @@ npm run dev:build
 ---
 **NOTE**
 
-In development mode, Type errors are ignored but type warning and errors will still be 
-still visible.
+Running the webpack in development mode will use the *[@babel/preset-typescript]*(https://babeljs.io/docs/en/babel-preset-typescript) and *[fork-ts-checker-webpack-plugin]*(https://github.com/TypeStrong/fork-ts-checker-webpack-plugin) for type checking, because *@babel/preset-typescript* only transpile the files.
+
+
 
 ---
 
