@@ -69,14 +69,8 @@ const config = {
 				],
 			},
 			{
-				test: /\.(png|jpg|gif)$/i,
-				use: [{
-					loader: 'url-loader',
-					options: {
-						limit: 8192,
-					}
-				}, ],
-				type: 'javascript/auto'
+				test: /\.(png|jpg|gif|jpeg|mp4)$/i,
+				type: "asset/resource"
 			}
 		]
 	},
